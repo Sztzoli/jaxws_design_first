@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema
+        targetNamespace = "http://bean.testwsdl2.ws.jaxws.example.com"
+        xmlns           = "http://bean.testwsdl2.ws.jaxws.example.com"
+
+        xmlns:xsd = "http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="unqualified"
+        attributeFormDefault="unqualified"
+>
+    <xsd:complexType name = "TestWsdl2Req">
+        <xsd:sequence>
+            <xsd:element name = "name" type = "xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name = "TestWsdl2Resp">
+        <xsd:sequence>
+            <xsd:element name = "message" type = "xsd:string" minOccurs = "1" maxOccurs = "1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="ErrorCode">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+
+    <xsd:element name = "testWsdl2Req" type = "TestWsdl2Req"/>
+    <xsd:element name = "testWsdl2Resp" type = "TestWsdl2Resp"/>
+    <xsd:element name = "errorCode" type = "ErrorCode"/>
+</xsd:schema>

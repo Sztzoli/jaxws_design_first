@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wsdl:definitions
+        name = "TestWsdl2"
+        targetNamespace = "http://testwsdl2.ws.jaxws.example.com"
+        xmlns:bean      = "http://bean.testwsdl2.ws.jaxws.example.com"
+        xmlns:tns       = "http://testwsdl2.ws.jaxws.example.com"
+        xmlns:xsd       = "http://www.w3.org/2001/XMLSchema"
+        xmlns:wsdl      = "http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap      = "http://schemas.xmlsoap.org/wsdl/soap"
+>
+    <wsdl:types>
+        <xsd:schema
+                targetNamespace = "http://testwsdl2.ws.jaxws.example.com"
+                attributeFormDefault="unqualified"
+                elementFormDefault="unqualified">
+        <xsd:import namespace = "http://bean.testwsdl2.ws.jaxws.example.com"  schemaLocation = "test-wsdl2.xsd"
+
+        />
+
+
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="testWsdl2ReqMsg">
+        <wsdl:part element = "bean:testWsdl2Req"  name = "req"/>
+    </wsdl:message>
+
+    <wsdl:message name="testWsdl2RespMsg">
+        <wsdl:part element= "bean:testWsdl2Resp" name = "resp"/>
+    </wsdl:message>
+
+    <wsdl:message name="srvEx">
+        <wsdl:part element = "bean:errorCode" name="errorCode"/>
+    </wsdl:message>
+
+    <wsdl:portType name="testWsdl2PortType">
+        <wsdl:operation name = "testWsdl2">
+            <wsdl:input message = "tns:testWsdl2ReqMsg" name = "TestWsdl2Req"/>
+            <wsdl:output message = "tns:testWsdl2RespMsg" name = "TestWsdl2Resp"/>
+            <wsdl:fault  message = "tns:srvEx" name = "SrvEx" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name = "TestWsdl2SoapBinding" type = "tns:testWsdl2PortType" >
+        <soap:binding style="document" transport = "http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name = "testWsdl2">
+            <soap:operation soapAction = "" style = "document"/>
+            <wsdl:input name = "TestWsdl2Req">
+                <soap:body use = "literal"/>
+            </wsdl:input>
+            <wsdl:output name = "TestWsdl2Resp">
+                <soap:body use = "literal"/>
+            </wsdl:output>
+            <wsdl:fault name = "SrvEx">
+                <soap:fault name = "SrvEx" use = "literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name = "TestWsdl2">
+        <wsdl:port binding = "tns:TestWsdl2SoapBinding" name = "testWsdl2PortTypePort">
+            <soap:address location="https://localhost:8080/services/test-wsdl2"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
