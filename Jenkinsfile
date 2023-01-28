@@ -21,7 +21,6 @@ pipeline {
                 sh "./mvnw clean install -DskipTests"
             }
         }
-        }
         stage("Test Unit") {
             steps {
                 sh "./mvnw test -Punit"
