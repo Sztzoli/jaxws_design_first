@@ -12,13 +12,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Sztzoli/jaxws_design_first.git'
             }
         }
-        stage("Compilation") {
+        stage("Echo vatiable") {
             steps {
                 echo $JAVA_HOME
             }
+        stage("Compilation") {
             steps {
                 sh "./mvnw clean install -DskipTests"
             }
+        }
         }
         stage("Test Unit") {
             steps {
