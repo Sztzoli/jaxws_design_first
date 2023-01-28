@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Echo vatiable") {
             steps {
-                echo $JAVA_HOME
+                printenv
             }
         }
         stage("Compilation") {
