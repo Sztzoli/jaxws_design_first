@@ -1,8 +1,8 @@
-pipeline{
- agent any
- tools{
-     jdk 'java 11'
- }
+pipeline {
+  agent any
+  tools {
+   jdk 'java 11'
+  }
   stage("Clone the project") {
     git branch: 'main', url: 'https://github.com/Sztzoli/jaxws_design_first.git'
   }
