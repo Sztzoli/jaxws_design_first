@@ -3,6 +3,9 @@ pipeline {
     tools {
         jdk 'java 11'
     }
+    enviroment {
+        JAVA_HOME="/var/jenkins_home/tools/hudson.model.JDK/java_11"
+    }
     stages {
         stage("Clone the project") {
             steps {
