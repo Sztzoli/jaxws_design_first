@@ -16,7 +16,7 @@ public abstract class TestClientConfig<T> {
     }
     public Client getClient(T port) {
         Client client = ClientProxy.getClient(port);
-        ((BindingProvider)port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/services/testWsdl");
+        ((BindingProvider)port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8081/services/testWsdl");
         return client;
     }
 }
