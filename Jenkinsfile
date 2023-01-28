@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo $JAVA_HOME
             }
+        }
         stage("Compilation") {
             steps {
                 sh "./mvnw clean install -DskipTests"
