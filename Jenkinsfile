@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Echo vatiable") {
             steps {
-                printenv
+                sh "printenv"
             }
         }
         stage("Compilation") {
