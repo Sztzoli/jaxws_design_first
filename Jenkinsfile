@@ -14,17 +14,14 @@ pipeline {
                 sh "./mvnw clean install -DskipTests"
             }
         }
-        stage("Tests and Deployment") {
-            stage("Runing unit tests") {
-                steps {
-                    sh "./mvnw test -Punit"
-                }
-
+        stage("Test Unit") {
+            steps {
+                sh "./mvnw test -Punit"
             }
-            stage("Deployment") {
-                steps {
-                     sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
-                }
+        }
+        stage("Deployment") {
+            steps {
+                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
             }
         }
     }
