@@ -42,7 +42,7 @@
     </wsdl:portType>
 
     <wsdl:binding name = "TestWsdlSoapBinding" type = "tns:testWsdlPortType" >
-        <soap:binding style="document" transport = "http://schemas.xmlsoap.org/soap/http"/>
+        <soap:binding style="document" transport ="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name = "testWsdl">
             <soap:operation soapAction = "" style = "document"/>
             <wsdl:input name = "TestWsdlReq">
