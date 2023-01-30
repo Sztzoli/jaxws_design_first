@@ -1,10 +1,11 @@
 package com.example.jaxws.wsimpl;
 
-import com.example.jaxws.ws.testwsdl.SrvEx;
-import com.example.jaxws.ws.testwsdl.TestWsdl;
-import com.example.jaxws.ws.testwsdl.TestWsdlPortType;
-import com.example.jaxws.ws.testwsdl.bean.TestWsdlReq;
-import com.example.jaxws.ws.testwsdl.bean.TestWsdlResp;
+import com.example.jaxws.ws.testwsdl2.SrvEx;
+import com.example.jaxws.ws.testwsdl2.TestWsdl2;
+import com.example.jaxws.ws.testwsdl2.TestWsdl2PortType;
+import com.example.jaxws.ws.testwsdl2.bean.TestWsdl2Req;
+import com.example.jaxws.ws.testwsdl2.bean.TestWsdl2Resp;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +18,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class WS1IT {
-
-    private TestWsdlPortType testClient;
+public class WS2IT {
 
     @Autowired
     private ServletWebServerApplicationContext webServerAppCtxt;
+    private TestWsdl2PortType testClient;
 
     @BeforeEach
     void init() {
         testClient = WSTestClientUtil.getFactoryBean(
-                TestWsdlPortType.class,
-                TestWsdl.SERVICE,
+                TestWsdl2PortType.class,
+                TestWsdl2.SERVICE,
                 webServerAppCtxt.getWebServer().getPort(),
-                "testWsdl")
-                .create(TestWsdlPortType.class);
+                "testWsdl2")
+                .create(TestWsdl2PortType.class);
     }
 
     @Test
     void dummy() throws SrvEx {
-        TestWsdlReq req = new TestWsdlReq();
+        TestWsdl2Req req = new TestWsdl2Req();
         String testName = "Zoli";
         req.setName(testName);
 
-        TestWsdlResp resp = testClient.testWsdl(req);
+        TestWsdl2Resp resp = testClient.testWsdl2(req);
         assertEquals("Hello " + testName, resp.getMessage());
     }
 
     @Test
     void exception() throws SrvEx {
-        TestWsdlReq req = new TestWsdlReq();
-        assertThrows(SOAPFaultException.class, () -> testClient.testWsdl(req));
+        TestWsdl2Req req = new TestWsdl2Req();
+        assertThrows(SOAPFaultException.class, () -> testClient.testWsdl2(req));
     }
 }
